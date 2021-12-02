@@ -19,6 +19,5 @@ public class HomeController {
         Map map = new HashMap<String, String>();
         map.put("app-version", appVersion);
         return map;
-
     }
 }

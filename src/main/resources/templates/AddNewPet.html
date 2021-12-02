@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Pet Portal</title>
+</head>
+<body>
+
+<h2>Add New Pet</h2> <br>
+<form>
+  pet name <input type="text" id="pname" name="pname" placeholder="pet name" required><br><br>
+  type of pet <select id="type" name="type" required>
+  <option value="" disabled selected hidden>select</option>
+  <option value="dog">dog</option>
+  <option value="cat">cat</option>
+  <option value="bird">bird</option>
+  <option value="rabbit">rabbit</option>
+  <option value="horse">horse</option>
+  <option value="other">other</option>
+</select><br><br>
+  breed(s) <input type="text" id="breed" name="breed" placeholder="breed(s)"><br><br>
+  color <input type="text" id="color" name="color" placeholder="color"><br><br>
+  sex <select id="sex" name="sex" required>
+  <option value="" disabled selected hidden>select</option>
+  <option value="male">male</option>
+  <option value="female">female</option>
+  <option value="other/unknown">other/unknown</option>
+</select><br><br>
+  spayed/neutered? <select type="radio" name="fixed" required>
+  <option value="" disabled selected hidden>select</option>
+  <option value="yes">yes</option>
+  <option value="no">no</option>
+  <option value="unknown">unknown</option>
+</select><br><br>
+  date of birth (or estimated) <input type="date" id="DOB" name="DOB" required><br><br>
+  date of adoption <input type="date" id="DOA" name="DOA"><br><br>
+  current weight <input type="number" id="weight" name="weight" placeholder="weight in lbs"><br><br>
+  microchip number (if applicable) <input type="text" id="microchip" name=microchip" placeholder="microchip number"><br><br>
+  license number (if applicable) <input type="text" id="license" name="license" placeholder="license number"><br><br>
+  tell us about your pet <br><textarea type="text" id="about" name="about" rows="5" cols="80" placeholder="tell us about your pet here"></textarea><br><br>
+
+  <button onclick="window.location.href='./UserProfile.html'">Submit</button>
+</form>
+</body>
+</html>

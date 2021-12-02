@@ -37,7 +37,6 @@ public class UserController {
         userRepository.deleteById(user_id);
     }
 
-    //Patch Update????
     @RequestMapping(value = "{user_id}", method = RequestMethod.PUT)
     public User update(@PathVariable Integer user_id, @RequestBody User user) {
         User existingUser = userRepository.getById(user_id);

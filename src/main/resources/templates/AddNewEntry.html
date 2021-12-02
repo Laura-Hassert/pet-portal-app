@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Entry</title>
+</head>
+<body>
+<h2>New Entry for <span th:text=${pet_name}></span></h2>
+
+<button onclick="window.location.href='./PetProfile.html'">Back</button>
+<form>
+    date <input type="date" id="dateofentry" name="dateofentry"><br><br>
+    entry type <select id="entrytype" name="entrytype" required>
+    <option value="" disabled selected hidden>select</option>
+    <option value="vet appointment (wellness)">vet appointment (wellness)</option>
+    <option value="vet appointment (follow-up)">vet appointment (follow-up)</option>
+    <option value="vet appointment (emergency)">vet appointment (emergency)</option>
+    <option value="grooming">grooming</option>
+    <option value="training">training</option>
+    <option value="boarding drop off">boarding drop off</option>
+    <option value="boarding pick up">boarding pick up</option>
+    <option value="vaccine administration">vaccine administration</option>
+    <option value="vaccine expiration">vaccine expiration</option>
+    <option value="order/buy food">order/buy food</option>
+    <option value="order/buy supplies">order/buy supplies</option>
+    <option value="give medication(s)">give medication(s)</option>
+    <option value="refill medication(s)">refill medication(s)</option>
+    <option value="walk/run">walk/run</option>
+    <option value="food change">food change</option>
+    <option value="health incident">health incident</option>
+    <option value="behavior incident">behavior incident</option>
+    <option value="other">other</option>
+</select><br><br>
+    description <br><textarea type="text" id="description" name="description" rows="5" cols="80" placeholder="write a description here"></textarea><br><br>
+    <button onclick="window.location.href='./PetProfile.html'">Submit</button>
+</form>
+</body>
+</html>

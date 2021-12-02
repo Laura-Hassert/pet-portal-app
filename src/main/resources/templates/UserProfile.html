@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Portal</title>
+</head>
+<body>
+    <h1>Welcome <span th:text="${first_name}"></span>!</h1>
+    <h2>Pets</h2>
+
+    <button onclick="window.location.href='./PetProfile.html'">View Pet</button>
+    <button>Edit Pet</button>
+    <button>Delete Pet</button><br><br>
+    <a href="./AddNewPet.html"><button>Add new pet</button></a><br><br>
+
+    <button onclick="window.location.href='./Login.html'">Log Out</button>
+</body>
+</html>
