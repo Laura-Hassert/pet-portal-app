@@ -17,6 +17,7 @@ public class Event {
     private Date event_date;
     private String event_type;
     private String description;
+    private Integer pet_id;
 
     public Event() {
     }
@@ -51,5 +52,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getPet_id() {
+        return pet_id;
+    }
+
+    public void setPet_id(Integer pet_id) {
+        this.pet_id = pet_id;
     }
 }

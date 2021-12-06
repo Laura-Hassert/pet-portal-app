@@ -26,7 +26,6 @@ public class Pet {
     private String microchip_number;
     private String license_number;
     private String about;
-    private Integer entry_id;
 
     @ManyToMany(mappedBy = "pets")
     @JsonIgnore
@@ -156,12 +155,5 @@ public class Pet {
         this.about = about;
     }
 
-    public Integer getEntry_id() {
-        return entry_id;
-    }
-
-    public void setEntry_id(Integer entry_id) {
-        this.entry_id = entry_id;
-    }
 }
 

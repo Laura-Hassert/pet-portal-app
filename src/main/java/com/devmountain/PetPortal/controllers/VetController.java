@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/vets")
+@RequestMapping("/api/v1/vets/")
 public class VetController {
 
     @Autowired
@@ -37,7 +37,6 @@ public class VetController {
         vetRepository.deleteById(vet_id);
     }
 
-    //Patch Update????
     @RequestMapping(value = "{vet_id}", method = RequestMethod.PUT)
     public Vet update(@PathVariable Integer vet_id, @RequestBody Vet vet) {
         Vet existingVet = vetRepository.getById(vet_id);

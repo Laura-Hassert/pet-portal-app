@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/events")
+@RequestMapping("/api/v1/events/")
 public class EventController {
 
     @Autowired
@@ -37,7 +37,6 @@ public class EventController {
         eventRepository.deleteById(event_id);
     }
 
-    //Patch Update????
     @RequestMapping(value = "{event_id}", method = RequestMethod.PUT)
     public Event update(@PathVariable Integer event_id, @RequestBody Event event) {
         Event existingEvent = eventRepository.getById(event_id);
