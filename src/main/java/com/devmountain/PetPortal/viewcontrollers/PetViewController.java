@@ -34,12 +34,12 @@ public class PetViewController {
     public String getVetProfile(Model model) {
         Optional<Vet> vetOptional = vetRepository.findById(1);
         vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
-        return "vetProfile";
+        return "vet";
     }
 
     @GetMapping("/entry")
     public String getEvent(Model model) {
-        Optional<Event> eventOptional = eventRepository.findById(1);
+        Optional<Event> eventOptional = eventRepository.findById(5);
         eventOptional.ifPresent(event -> model.addAttribute("event", event));
         return "event";
     }
@@ -50,21 +50,15 @@ public class PetViewController {
     @GetMapping("/addNewEntry")
     public String getAddNewEntry() { return "addNewEntry"; }
 
-    @PostMapping("/addNewPet")
-    public String newPetSubmit(@ModelAttribute Pet pet, Model model) {
-        model.addAttribute("pet", pet);
+    @PostMapping("/addNewVet")
+    public String newVetSubmit(@ModelAttribute Vet vet, Model model) {
+        model.addAttribute("vet", vet);
         return "result";
     }
 
     @PostMapping("/addNewEntry")
     public String newEntrySubmit(@ModelAttribute Event event, Model model) {
         model.addAttribute("event", event);
-        return "result";
-    }
-
-    @PostMapping("/addNewVet")
-    public String newVetSubmit(@ModelAttribute Vet vet, Model model) {
-        model.addAttribute("vet", vet);
         return "result";
     }
 

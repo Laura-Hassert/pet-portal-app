@@ -2,6 +2,7 @@ package com.devmountain.PetPortal.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -83,6 +84,7 @@ public class Pet {
         this.color = color;
     }
 
+    @DateTimeFormat(pattern = "MM-dd-YYYY")
     public Date getDOB() {
         return DOB;
     }
@@ -91,6 +93,7 @@ public class Pet {
         this.DOB = DOB;
     }
 
+    @DateTimeFormat(pattern = "MM-dd-YYYY")
     public Date getDOA() {
         return DOA;
     }

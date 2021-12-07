@@ -7,10 +7,7 @@ import com.devmountain.PetPortal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -42,6 +39,12 @@ public class UserViewController {
 //        model.addAttribute("pets", petRepository.findAll());
 //        return "petProfile";
 //    }
+
+    @PostMapping("/addNewPet")
+    public String newPetSubmit(@ModelAttribute Pet pet, Model model) {
+        model.addAttribute("pet", pet);
+        return "result";
+    }
 
     @GetMapping("/addNewPet")
     public String getAddNewPet() {

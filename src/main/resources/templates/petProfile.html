@@ -24,8 +24,8 @@
             <tr><td>Type: <span th:text="${pet.pet_type}"></span></td></tr>
             <tr><td>Breed: <span th:text="${pet.breed}"></span></td></tr>
             <tr><td>Color: <span th:text="${pet.color}"></span></td></tr>
-            <tr><td>Date of Birth: <span th:text="${pet.DOB}"></span></td></tr>
-            <tr><td>Date of Adoption: <span th:text="${pet.DOA}"></span></td></tr>
+            <tr><td>Date of Birth: <span th:text="${#dates.format(pet.DOB, 'MM-dd-YYYY')}"></span></td></tr>
+            <tr><td>Date of Adoption: <span th:text="${#dates.format(pet.DOA, 'MM-dd-YYYY')}"></span></td></tr>
             <tr><td>Sex: <span th:text="${pet.sex}"></span></td></tr>
             <tr><td>Spayed/Neutered: <span th:text="${pet.spayed_neutered}"></span></td></tr>
             <tr><td>Weight: <span th:text="${pet.weight}"></span></td></tr>
@@ -37,21 +37,21 @@
     <button>Edit Pet</button><br>
 
     <h3>Vets</h3>
-<!--    <table>-->
-<!--        <tbody>-->
-<!--            <tr th:if="${vet==null}">-->
-<!--                <td colspan="2"> No Vet Info Available </td>-->
-<!--            <tr>-->
-<!--                <td><span th:text="${vet.vet_name}"></span></td>-->
-<!--                <td><span th:text="${vet.practice_name}"></span></td>-->
-<!--                <td><span th:text="${vet.street_address}"></span><span th:text="${vet.city}"></span><span th:text="${vet.state}"><span th:text="${vet.zip_code}"></span></span></td>-->
-<!--                <td><span th:text="${vet.vet_phone}"></span></td>-->
-<!--                <td><span th:text="${vet.vet_fax}"></span></td>-->
-<!--                <td><span th:text="${vet.website}"></span></td>-->
-<!--                <td><span th:text="${vet.vet_email}"></span></td>-->
-<!--            </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
+    <table>
+        <tbody>
+            <tr th:if="${vet==null}">
+                <td colspan="2"> No Vet Info Available </td>
+            <tr>
+                <td><span th:text="${vet.vet_name}"></span></td>
+                <td><span th:text="${vet.practice_name}"></span></td>
+                <td><span th:text="${vet.street_address}"></span><span th:text="${vet.city}"></span><span th:text="${vet.state}"><span th:text="${vet.zip_code}"></span></span></td>
+                <td><span th:text="${vet.vet_phone}"></span></td>
+                <td><span th:text="${vet.vet_fax}"></span></td>
+                <td><span th:text="${vet.website}"></span></td>
+                <td><span th:text="${vet.vet_email}"></span></td>
+            </tr>
+        </tbody>
+    </table>
 
         <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
 
