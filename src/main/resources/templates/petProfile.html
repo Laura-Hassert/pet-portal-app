@@ -5,52 +5,60 @@
     <meta charset="UTF-8">
     <title>Pet Portal</title>
 </head>
+<style>
+    body { background-color: lightblue; font-family: Arial, Verdana, sans-serif; }
+    button { background-color:navy; color: white; border: none; text-align: center; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+</style>
 <body>
     <h2><span th:text="${pet.pet_name}"></span>'s Profile</h2>
-    <a th:href="@{/userProfile}"><button type="button">Back</button></a>
+    <a th:href="@{/userProfile}"><button type="button">Back</button></a><br>
 
     <table>
         <tbody>
-        <tr th:if="${pet==null}">
-            <td colspan="2"> No Pet Info Available </td>
-        </tr>
-        <tr>
-            <td>Name: </td>
-            <td>Type: </td>
-            <td>Breed: </td>
-            <td>Color: </td>
-            <td>Date of Birth: </td>
-            <td>Date of Adoption: </td>
-            <td>Sex: </td>
-            <td>Spayed/Neutered: </td>
-            <td>Weight: </td>
-            <td>Microchip: </td>
-            <td>License: </td>
-            <td>About: </td>
-        </tr>
-        <tr>
-            <td><span th:text="${pet.pet_name}"></span></td>
-            <td><span th:text="${pet.pet_type}"></span></td>
-            <td><span th:text="${pet.breed}"></span></td>
-            <td><span th:text="${pet.color}"></span></td>
-            <td><span th:text="${pet.DOB}"></span></td>
-            <td><span th:text="${pet.DOA}"></span></td>
-            <td><span th:text="${pet.sex}"></span></td>
-            <td><span th:text="${pet.spayed_neutered}"></span></td>
-            <td><span th:text="${pet.weight}"></span></td>
-            <td><span th:text="${pet.microchip_number}"></span></td>
-            <td><span th:text="${pet.license_number}"></span></td>
-            <td><span th:text="${pet.about}"></span></td>
-        </tr>
+            <tr th:if="${pet==null}">
+                <td colspan="2"> No Pet Info Available </td>
+            </tr>
+            <tr><td>Name: <span th:text="${pet.pet_name}"></span></td></tr>
+            <tr><td>Type: <span th:text="${pet.pet_type}"></span></td></tr>
+            <tr><td>Breed: <span th:text="${pet.breed}"></span></td></tr>
+            <tr><td>Color: <span th:text="${pet.color}"></span></td></tr>
+            <tr><td>Date of Birth: <span th:text="${pet.DOB}"></span></td></tr>
+            <tr><td>Date of Adoption: <span th:text="${pet.DOA}"></span></td></tr>
+            <tr><td>Sex: <span th:text="${pet.sex}"></span></td></tr>
+            <tr><td>Spayed/Neutered: <span th:text="${pet.spayed_neutered}"></span></td></tr>
+            <tr><td>Weight: <span th:text="${pet.weight}"></span></td></tr>
+            <tr><td>Microchip: <span th:text="${pet.microchip_number}"></span></td></tr>
+            <tr><td>License: <span th:text="${pet.license_number}"></span></td></tr>
+            <tr><td>About: <span th:text="${pet.about}"></span></td></tr>
         </tbody>
-    </table>
+    </table><br>
     <button>Edit Pet</button><br>
 
     <h3>Vets</h3>
-        <span th:text="${pet.current_vet}"></span><br><br>
+<!--    <table>-->
+<!--        <tbody>-->
+<!--            <tr th:if="${vet==null}">-->
+<!--                <td colspan="2"> No Vet Info Available </td>-->
+<!--            <tr>-->
+<!--                <td><span th:text="${vet.vet_name}"></span></td>-->
+<!--                <td><span th:text="${vet.practice_name}"></span></td>-->
+<!--                <td><span th:text="${vet.street_address}"></span><span th:text="${vet.city}"></span><span th:text="${vet.state}"><span th:text="${vet.zip_code}"></span></span></td>-->
+<!--                <td><span th:text="${vet.vet_phone}"></span></td>-->
+<!--                <td><span th:text="${vet.vet_fax}"></span></td>-->
+<!--                <td><span th:text="${vet.website}"></span></td>-->
+<!--                <td><span th:text="${vet.vet_email}"></span></td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
 
+        <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
 
     <h3>Entries</h3>
+<!--        <span th:text="${event.event_date}"></span><br><br>-->
+<!--        <span th:text="${event.event_type}"></span><br><br>-->
+<!--        <span th:text="${event.description}"></span><br><br>-->
         <a th:href="@{/addNewEntry}"><button type="button">Add New Entry</button></a>
 </body>
 </html>

@@ -30,18 +30,42 @@ public class PetViewController {
         return "petProfile";
     }
 
-//    @GetMapping("/vet")
-//    public String getVetProfile(Model model) {
-//        Optional<Vet> vetOptional = vetRepository.findById(?);
-//        vetOptional.ifPresent(pet -> model.addAttribute("vet", vet));
-//        return "vetProfile";
-//    }
-//
-//    @GetMapping("/entry")
-//    public String getEvent(Model model) {
-//        Optional<Event> eventOptional = eventRepository.findById(?);
-//        eventOptional.ifPresent(pet -> model.addAttribute("event", event));
-//        return "event";
-//    }
+    @GetMapping("/vet")
+    public String getVetProfile(Model model) {
+        Optional<Vet> vetOptional = vetRepository.findById(1);
+        vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
+        return "vetProfile";
+    }
+
+    @GetMapping("/entry")
+    public String getEvent(Model model) {
+        Optional<Event> eventOptional = eventRepository.findById(1);
+        eventOptional.ifPresent(event -> model.addAttribute("event", event));
+        return "event";
+    }
+
+    @GetMapping("/addNewVet")
+    public String getAddNewVet() { return "addNewVet"; }
+
+    @GetMapping("/addNewEntry")
+    public String getAddNewEntry() { return "addNewEntry"; }
+
+    @PostMapping("/addNewPet")
+    public String newPetSubmit(@ModelAttribute Pet pet, Model model) {
+        model.addAttribute("pet", pet);
+        return "result";
+    }
+
+    @PostMapping("/addNewEntry")
+    public String newEntrySubmit(@ModelAttribute Event event, Model model) {
+        model.addAttribute("event", event);
+        return "result";
+    }
+
+    @PostMapping("/addNewVet")
+    public String newVetSubmit(@ModelAttribute Vet vet, Model model) {
+        model.addAttribute("vet", vet);
+        return "result";
+    }
 
 }

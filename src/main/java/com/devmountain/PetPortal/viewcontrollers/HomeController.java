@@ -30,6 +30,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String getLogin() { return "login"; }
+
+    @GetMapping("/register")
+    public String getRegister() { return "register"; }
+
     @Autowired
     private PetRepository petRepository;
 
@@ -39,10 +45,5 @@ public class HomeController {
 //        return "petProfile";
 //    }
 
-    @GetMapping("/addNewVet")
-    public String getAddNewVet() { return "addNewVet"; }
-
-    @GetMapping("/addNewEntry")
-    public String getAddNewEntry() { return "addNewEntry"; }
 
 }

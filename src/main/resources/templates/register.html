@@ -18,7 +18,7 @@
     <input type="text" id="phone" name="phone" placeholder="phone number (optional)"><br><br>
     <input type="submit" id="submitNewUser" th:value="Submit"><br><br>
 
-    <button onclick="window.location.href='./login.html'">Back to Log In</button>
+    <a th:href="@{/login}"><button type="button">Back to Log In</button></a>
 </form>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <body>
 
   <h2>Add New Pet</h2> <br>
-  <form>
+  <form action="#" th:action="@{/addNewPet}" th:object="${pet}" method="post">
     pet name <input type="text" id="pname" name="pname" placeholder="pet name" required><br><br>
     type of pet <select id="type" name="type" required>
     <option value="" disabled selected hidden>select</option>
@@ -41,7 +41,7 @@
     tell us about your pet <br><input type="text" id="about" name="about" placeholder="tell us about your pet here"><br><br>
 
     <button type="submit">Submit</button>
-    <a th:href="@{/petProfile}"><button type="button">Back</button></a>
+    <a th:href="@{/userProfile}"><button type="button">Back</button></a>
   </form>
 </body>
 </html>

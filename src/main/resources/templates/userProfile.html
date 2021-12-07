@@ -18,7 +18,7 @@
         <tr th:each="pet : ${pets}">
             <td>Name: <span th:text="${pet.pet_name}"></span></td>
             <td>Type: <span th:text="${pet.pet_type}"></span></td>
-            <td><button onclick="window.location.href='./petProfile.html'">View Pet</button></td>
+            <td><button href="@{/petProfile}">View Pet</button></td>
             <td><button>Edit Pet</button></td>
             <td><form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form></td>
         </tr>
@@ -28,6 +28,6 @@
 
     <a th:href="@{/addNewPet}"><button type="button">Add new pet</button></a>
 
-    <button onclick="window.location.href='./login.html'">Log Out</button>
+    <a th:href="@{/login}"><button type="button">Log Out</button></a>
 </body>
 </html>
