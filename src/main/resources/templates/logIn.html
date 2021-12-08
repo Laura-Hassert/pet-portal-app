@@ -9,12 +9,16 @@
   <h1>Welcome to Pet Portal!</h1>
   <h3>Sign in below to get started</h3>
 
-  <form>
-    Log In <br><br>
+  <p>Log In</p>
+  <form name=loginForm action="login" method="post">
     <input type="text" id="email" name="email" placeholder="email" required><br><br>
     <input type="password" id="password" name="password" placeholder="password" required><br><br>
-    <a th:href="@{/userProfile}"><button type="button">Log In</button></a>
-    Don't have an account yet? Register <a th:href="@{/register}">here</a>!
+    <button type="submit">Log In</button>
   </form>
+
+  Don't have an account yet? Register <a th:href="@{/register}">here</a>!
+
+
+  <!--  <a th:href="@{/userProfile}">-->
 </body>
 </html>

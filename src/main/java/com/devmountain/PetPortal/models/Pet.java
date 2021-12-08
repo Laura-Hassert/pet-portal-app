@@ -84,7 +84,7 @@ public class Pet {
         this.color = color;
     }
 
-    @DateTimeFormat(pattern = "MM-dd-YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getDOB() {
         return DOB;
     }
@@ -93,7 +93,7 @@ public class Pet {
         this.DOB = DOB;
     }
 
-    @DateTimeFormat(pattern = "MM-dd-YYYY")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getDOA() {
         return DOA;
     }

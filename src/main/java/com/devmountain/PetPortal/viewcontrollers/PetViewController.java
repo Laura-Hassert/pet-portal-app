@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,22 +28,16 @@ public class PetViewController {
     public String getPetProfile(Model model) {
         Optional<Pet> petOptional = petRepository.findById(1);
         petOptional.ifPresent(pet -> model.addAttribute("pet", pet));
+
+        Optional<Vet> vetOptional = vetRepository.findById(1);
+        vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
+
+        List<Event> eventList = eventRepository.findByPetId(1);
+        model.addAttribute("events", eventList);
+
         return "petProfile";
     }
 
-    @GetMapping("/vet")
-    public String getVetProfile(Model model) {
-        Optional<Vet> vetOptional = vetRepository.findById(1);
-        vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
-        return "vet";
-    }
-
-    @GetMapping("/entry")
-    public String getEvent(Model model) {
-        Optional<Event> eventOptional = eventRepository.findById(5);
-        eventOptional.ifPresent(event -> model.addAttribute("event", event));
-        return "event";
-    }
 
     @GetMapping("/addNewVet")
     public String getAddNewVet() { return "addNewVet"; }
@@ -53,13 +48,15 @@ public class PetViewController {
     @PostMapping("/addNewVet")
     public String newVetSubmit(@ModelAttribute Vet vet, Model model) {
         model.addAttribute("vet", vet);
-        return "result";
+        vetRepository.saveAndFlush(vet);
+        return "petProfile";
     }
 
     @PostMapping("/addNewEntry")
     public String newEntrySubmit(@ModelAttribute Event event, Model model) {
         model.addAttribute("event", event);
-        return "result";
+        eventRepository.saveAndFlush(event);
+        return "petProfile";
     }
 
 }

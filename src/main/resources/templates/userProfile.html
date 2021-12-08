@@ -6,22 +6,24 @@
     <title>Pet Portal</title>
 </head>
 <body>
-    <h1>Welcome <span th:text="${user.first_name}">no user found</span>!</h1>
+<!--    <h1>Welcome <span th:text="${user.first_name}">no user found</span>!</h1>-->
     <h2>Pets</h2>
 
 
     <table>
-        <tbody>
-        <tr th:if="${pets==null or pets.empty}">
-            <td colspan="2"> No Pet Info Available </td>
-        </tr>
-        <tr th:each="pet : ${pets}">
-            <td>Name: <span th:text="${pet.pet_name}"></span></td>
-            <td>Type: <span th:text="${pet.pet_type}"></span></td>
-            <td><button href="@{/petProfile}">View Pet</button></td>
-            <td><button>Edit Pet</button></td>
-            <td><form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form></td>
-        </tr>
+        <tbody th:if="${pets==null or pets.empty}">
+            <tr>
+                <td colspan="2"> No Pet Info Available </td>
+            </tr>
+        </tbody>
+        <tbody th:if="${pets!=null}">
+            <tr th:each="pet : ${pets}">
+                <td>Name: <span th:text="${pet.pet_name}"></span></td>
+                <td>Type: <span th:text="${pet.pet_type}"></span></td>
+                <td><button href="@{/petProfile}">View Pet</button></td>
+                <td><button>Edit Pet</button></td>
+                <td><form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form></td>
+            </tr>
         </tbody>
     </table>
 

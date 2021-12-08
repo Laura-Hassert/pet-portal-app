@@ -16,10 +16,12 @@
     <a th:href="@{/userProfile}"><button type="button">Back</button></a><br>
 
     <table>
-        <tbody>
-            <tr th:if="${pet==null}">
+        <tbody th:if="${pet==null}">
+            <tr>
                 <td colspan="2"> No Pet Info Available </td>
             </tr>
+        </tbody>
+        <tbody th:if="${pet!=null}">
             <tr><td>Name: <span th:text="${pet.pet_name}"></span></td></tr>
             <tr><td>Type: <span th:text="${pet.pet_type}"></span></td></tr>
             <tr><td>Breed: <span th:text="${pet.breed}"></span></td></tr>
@@ -41,14 +43,14 @@
         <tbody>
             <tr th:if="${vet==null}">
                 <td colspan="2"> No Vet Info Available </td>
-            <tr>
-                <td><span th:text="${vet.vet_name}"></span></td>
-                <td><span th:text="${vet.practice_name}"></span></td>
-                <td><span th:text="${vet.street_address}"></span><span th:text="${vet.city}"></span><span th:text="${vet.state}"><span th:text="${vet.zip_code}"></span></span></td>
-                <td><span th:text="${vet.vet_phone}"></span></td>
-                <td><span th:text="${vet.vet_fax}"></span></td>
-                <td><span th:text="${vet.website}"></span></td>
-                <td><span th:text="${vet.vet_email}"></span></td>
+            <tr th:if="${vet!=null}">
+            <tr><td><span th:text="${vet.vet_name}"></span></td></tr>
+                <tr><td><span th:text="${vet.practice_name}"></span></td></tr>
+                <tr><td><span th:text="${vet.street_address}"></span> <span th:text="${vet.city}"></span>, <span th:text="${vet.state}"> </span><span th:text="${vet.zip_code}"></span></td></tr>
+                <tr><td><span th:text="${vet.vet_phone}"></span></td></tr>
+                <tr><td><span th:text="${vet.vet_fax}"></span></td></tr>
+                <tr><td><span th:text="${vet.website}"></span></td></tr>
+                <tr><td><span th:text="${vet.vet_email}"></span></td></tr>
             </tr>
         </tbody>
     </table>
@@ -56,9 +58,15 @@
         <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
 
     <h3>Entries</h3>
-<!--        <span th:text="${event.event_date}"></span><br><br>-->
-<!--        <span th:text="${event.event_type}"></span><br><br>-->
-<!--        <span th:text="${event.description}"></span><br><br>-->
+        <table>
+            <tbody>
+                <tr th:each="event : ${events}">
+                    <td><span th:text="${#dates.format(event.event_date, 'MM-dd-YYYY')}"></span></td>
+                    <td><span th:text="${event.event_type}"></span></td>
+                    <td><span th:text="${event.description}"></span></td>
+                </tr>
+            </tbody>
+        </table>
         <a th:href="@{/addNewEntry}"><button type="button">Add New Entry</button></a>
 </body>
 </html>
