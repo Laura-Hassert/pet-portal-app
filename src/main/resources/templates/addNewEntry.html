@@ -9,8 +9,9 @@
     <h2>New Entry for <span th:text=${pet_name}></span></h2>
 
     <form action="#" th:action="@{/addNewEntry}" th:object="${event}" method="post">
-        date <input type="date" id="dateofentry" name="dateofentry"><br><br>
-        entry type <select id="entrytype" name="entrytype" required>
+        pet id <input type="text" id="petid" name="petid" th:field="*{pet_id}">
+        date <input type="date" id="dateofentry" name="dateofentry" th:field="*{event_date}"><br><br>
+        entry type <select id="entrytype" name="entrytype" th:field="*{event_type}" required>
             <option value="" disabled selected hidden>select</option>
             <option value="vet appointment (wellness)">vet appointment (wellness)</option>
             <option value="vet appointment (follow-up)">vet appointment (follow-up)</option>
@@ -31,7 +32,7 @@
             <option value="behavior incident">behavior incident</option>
             <option value="other">other</option>
         </select><br><br>
-        description <br><textarea type="text" id="description" name="description" rows="5" cols="80" placeholder="write a description here"></textarea><br><br>
+        description <br><textarea type="text" id="description" name="description" th:field="*{description}" placeholder="write a description here"></textarea><br><br>
         <button type="submit">Submit</button>
     </form>
 

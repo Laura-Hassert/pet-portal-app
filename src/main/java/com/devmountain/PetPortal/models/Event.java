@@ -1,6 +1,7 @@
 package com.devmountain.PetPortal.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public class Event {
         this.entry_id = entry_id;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date getEvent_date() {
         return event_date;
     }
@@ -54,11 +56,7 @@ public class Event {
         this.description = description;
     }
 
-    public Integer getPet_id() {
-        return pet_id;
-    }
+    public Integer getPet_id() { return pet_id; }
 
-    public void setPet_id(Integer pet_id) {
-        this.pet_id = pet_id;
-    }
+    public void setPet_id(Integer pet_id) { this.pet_id = pet_id; }
 }

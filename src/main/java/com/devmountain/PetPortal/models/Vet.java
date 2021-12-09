@@ -20,8 +20,8 @@ public class Vet {
     private String city;
     private String state;
     private Integer zip_code;
-    private Long vet_phone;
-    private Long vet_fax;
+    private String vet_phone;
+    private String vet_fax;
     private String website;
     private String vet_email;
 
@@ -85,19 +85,19 @@ public class Vet {
         this.zip_code = zip_code;
     }
 
-    public Long getVet_phone() {
+    public String getVet_phone() {
         return vet_phone;
     }
 
-    public void setVet_phone(Long vet_phone) {
+    public void setVet_phone(String vet_phone) {
         this.vet_phone = vet_phone;
     }
 
-    public Long getVet_fax() {
+    public String getVet_fax() {
         return vet_fax;
     }
 
-    public void setVet_fax(Long vet_fax) {
+    public void setVet_fax(String vet_fax) {
         this.vet_fax = vet_fax;
     }
 

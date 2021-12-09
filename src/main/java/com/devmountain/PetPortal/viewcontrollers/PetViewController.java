@@ -2,6 +2,7 @@ package com.devmountain.PetPortal.viewcontrollers;
 
 import com.devmountain.PetPortal.models.Event;
 import com.devmountain.PetPortal.models.Pet;
+import com.devmountain.PetPortal.models.User;
 import com.devmountain.PetPortal.models.Vet;
 import com.devmountain.PetPortal.repositories.EventRepository;
 import com.devmountain.PetPortal.repositories.PetRepository;
@@ -33,27 +34,32 @@ public class PetViewController {
         vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
 
         List<Event> eventList = eventRepository.findByPetId(1);
-        model.addAttribute("events", eventList);
+        model.addAttribute("event", eventList);
 
         return "petProfile";
     }
 
+    @GetMapping("/addVet")
+    public String getAddVet() { return "addNewVet"; }
+
+    @GetMapping("/addEntry")
+    public String getAddEntry() { return "addNewEntry"; }
 
     @GetMapping("/addNewVet")
-    public String getAddNewVet() { return "addNewVet"; }
-
-    @GetMapping("/addNewEntry")
-    public String getAddNewEntry() { return "addNewEntry"; }
+    public String getAddNewVet(Model model) {
+        model.addAttribute("vet", new Vet());
+        return "petProfile";
+    }
 
     @PostMapping("/addNewVet")
-    public String newVetSubmit(@ModelAttribute Vet vet, Model model) {
+    public String submitNewVet(@ModelAttribute Vet vet, Model model) {
         model.addAttribute("vet", vet);
         vetRepository.saveAndFlush(vet);
         return "petProfile";
     }
 
     @PostMapping("/addNewEntry")
-    public String newEntrySubmit(@ModelAttribute Event event, Model model) {
+    public String submitNewEntry(@ModelAttribute Event event, Model model) {
         model.addAttribute("event", event);
         eventRepository.saveAndFlush(event);
         return "petProfile";

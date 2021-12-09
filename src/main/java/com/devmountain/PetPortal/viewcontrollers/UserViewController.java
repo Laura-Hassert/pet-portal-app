@@ -1,6 +1,5 @@
 package com.devmountain.PetPortal.viewcontrollers;
 
-import com.devmountain.PetPortal.models.Event;
 import com.devmountain.PetPortal.models.Pet;
 import com.devmountain.PetPortal.models.User;
 import com.devmountain.PetPortal.repositories.PetRepository;
@@ -43,7 +42,7 @@ public class UserViewController {
     }
 
     @PostMapping("/addNewPet")
-    public String newPetSubmit(@ModelAttribute Pet pet, Model model) {
+    public String submitNewPet(@ModelAttribute Pet pet, Model model) {
         model.addAttribute("pet", pet);
         petRepository.saveAndFlush(pet);
         return "userProfile";

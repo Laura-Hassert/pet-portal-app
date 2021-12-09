@@ -8,11 +8,11 @@
 <body>
     <form action="#" th:action="@{/addNewVet}" th:object="${vet}" method="post">
         <h2>Add New Vet</h2> <br>
-        vet name <input type="text" id="vetname" name="vetname" placeholder="vet's name"><br><br>
-        practice name <input type="text" id="practice" name="practice" placeholder="practice name" required><br><br>
-        street address <input type="text" id="address" name="address" placeholder="street address" required><br><br>
-        city <input type="text" id="city" name="city" placeholder="city" required><br><br>
-        state <select id="state" name="state" required>
+        vet name <input type="text" id="vetname" name="vetname" th:field="*{vet_name}" placeholder="vet's name"><br><br>
+        practice name <input type="text" id="practice" name="practice" th:field="*{practice_name}" placeholder="practice name" required><br><br>
+        street address <input type="text" id="address" name="address" th:field="*{street_address}" placeholder="street address" required><br><br>
+        city <input type="text" id="city" name="city" th:field="*{city}" placeholder="city" required><br><br>
+        state <select id="state" name="state" th:field="*{state}" required>
         <option value="" disabled selected hidden>select</option>
         <option value="AL">AL</option>
         <option value="AK">AK</option>
@@ -72,13 +72,13 @@
         <option value="UM">UM</option>
         <option value="VI">VI</option>
     </select><br><br>
-        zip code <input type="number" id ="zip" name="zip" placeholder="zip code" required><br><br>
-        phone number <input type="tel" id="phone" name="phone" placeholder="phone number" required>
+        zip code <input type="number" id ="zip" name="zip" th:field="*{zip_code}" placeholder="zip code" required><br><br>
+        phone number <input type="tel" id="phone" name="phone" th:field="*{vet_phone}" placeholder="phone number" required>
         <small>format: 123-456-7890</small><br><br>
-        fax number <input type="tel" id="fax" name="fax" placeholder="fax number">
+        fax number <input type="tel" id="fax" name="fax" th:field="*{vet_fax}" placeholder="fax number">
         <small>format: 123-456-7890</small><br><br>
-        website url <input type="url" id="website" name="website" placeholder="vet's website url"><br><br>
-        email <input type="email" id="email" name="email" placeholder="vet's email address"><br><br>
+        website url <input type="url" id="website" name="website" th:field="*{website}" placeholder="vet's website url"><br><br>
+        email <input type="email" id="email" name="email" th:field="*{vet_email}" placeholder="vet's email address"><br><br>
 
         <button type="submit">Submit</button>
     </form>

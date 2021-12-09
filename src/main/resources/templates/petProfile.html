@@ -31,9 +31,9 @@
             <tr><td>Sex: <span th:text="${pet.sex}"></span></td></tr>
             <tr><td>Spayed/Neutered: <span th:text="${pet.spayed_neutered}"></span></td></tr>
             <tr><td>Weight: <span th:text="${pet.weight}"></span></td></tr>
-            <tr><td>Microchip: <span th:text="${pet.microchip_number}"></span></td></tr>
-            <tr><td>License: <span th:text="${pet.license_number}"></span></td></tr>
-            <tr><td>About: <span th:text="${pet.about}"></span></td></tr>
+            <tr><td>Microchip# <span th:text="${pet.microchip_number}"></span></td></tr>
+            <tr><td>License# <span th:text="${pet.license_number}"></span></td></tr>
+            <tr><td>About <span th:text="${pet.about}"></span></td></tr>
         </tbody>
     </table><br>
     <button>Edit Pet</button><br>
@@ -55,7 +55,7 @@
         </tbody>
     </table>
 
-        <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
+        <a th:href="@{/addVet}"><button type="button">Add New Vet</button></a>
 
     <h3>Entries</h3>
         <table>
@@ -67,6 +67,6 @@
                 </tr>
             </tbody>
         </table>
-        <a th:href="@{/addNewEntry}"><button type="button">Add New Entry</button></a>
+        <a th:href="@{/addEntry}"><button type="button">Add New Entry</button></a>
 </body>
 </html>

@@ -9,14 +9,14 @@
 <h1>Welcome to Pet Portal!</h1>
 <h3>Register below to get started</h3>
 
-<form>
-    Register <br><br>
-    <input type="text" id="email" name="email" placeholder="email" required><br><br>
-    <input type="password" id="password" name="password" placeholder="password" required><br><br>
-    <input type="text" id="fname" name="fname" placeholder="first name" required><br><br>
-    <input type="text" id="lname" name="lname" placeholder="last name" required><br><br>
-    <input type="text" id="phone" name="phone" placeholder="phone number (optional)"><br><br>
-    <input type="submit" id="submitNewUser" th:value="Submit"><br><br>
+<p>Register</p>
+<form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <input type="text" id="email" name="email" th:field="*{email}" placeholder="email" required><br><br>
+    <input type="password" id="password" name="password" th:field="*{password}" placeholder="password" required><br><br>
+    <input type="text" id="fname" name="fname" th:field="*{first_name}" placeholder="first name" required><br><br>
+    <input type="text" id="lname" name="lname" th:field="*{last_name}" placeholder="last name" required><br><br>
+    <input type="text" id="phone" name="phone" th:field="*{phone_number}"placeholder="phone number (optional)"><small>format: 123-456-7890</small><br><br>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
 
     <a th:href="@{/login}"><button type="button">Back to Log In</button></a>
 </form>

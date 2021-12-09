@@ -15,7 +15,7 @@ public class User {
     private String password;
     private String first_name;
     private String last_name;
-    private Integer phone_number;
+    private String phone_number;
 
     @ManyToMany
     @JoinTable(
@@ -76,11 +76,11 @@ public class User {
         this.last_name = last_name;
     }
 
-    public Integer getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(Integer phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 }
