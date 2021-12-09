@@ -6,8 +6,8 @@
     <title>Pet Portal</title>
 </head>
 <body>
+<h2>Add New Vet</h2> <br>
     <form action="#" th:action="@{/addNewVet}" th:object="${vet}" method="post">
-        <h2>Add New Vet</h2> <br>
         vet name <input type="text" id="vetname" name="vetname" th:field="*{vet_name}" placeholder="vet's name"><br><br>
         practice name <input type="text" id="practice" name="practice" th:field="*{practice_name}" placeholder="practice name" required><br><br>
         street address <input type="text" id="address" name="address" th:field="*{street_address}" placeholder="street address" required><br><br>

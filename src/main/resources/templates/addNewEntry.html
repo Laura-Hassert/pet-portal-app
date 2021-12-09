@@ -6,10 +6,12 @@
     <title>New Entry</title>
 </head>
 <body>
-    <h2>New Entry for <span th:text=${pet_name}></span></h2>
+<h2>New Entry</h2>
+<!--    <h2>New Entry for <span th:text=${pet.pet_name}></span></h2>-->
 
     <form action="#" th:action="@{/addNewEntry}" th:object="${event}" method="post">
         pet id <input type="text" id="petid" name="petid" th:field="*{pet_id}">
+<!--        <small><span th:text=${pet.pet_name}>'s pet id is</span><span th:text=${pet.pet_id}></span></small><br><br>-->
         date <input type="date" id="dateofentry" name="dateofentry" th:field="*{event_date}"><br><br>
         entry type <select id="entrytype" name="entrytype" th:field="*{event_type}" required>
             <option value="" disabled selected hidden>select</option>

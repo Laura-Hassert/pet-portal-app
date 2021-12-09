@@ -51,11 +51,12 @@
                 <tr><td><span th:text="${vet.vet_fax}"></span></td></tr>
                 <tr><td><span th:text="${vet.website}"></span></td></tr>
                 <tr><td><span th:text="${vet.vet_email}"></span></td></tr>
+                <tr><td><form th:object="${vet}" th:action="@{/deleteVet}" th:method="delete"><button type="submit">Delete Vet</button></form></td></tr>
             </tr>
         </tbody>
     </table>
 
-        <a th:href="@{/addVet}"><button type="button">Add New Vet</button></a>
+        <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
 
     <h3>Entries</h3>
         <table>
@@ -67,6 +68,6 @@
                 </tr>
             </tbody>
         </table>
-        <a th:href="@{/addEntry}"><button type="button">Add New Entry</button></a>
+        <a th:href="@{/addNewEntry}"><button type="button">Add New Entry</button></a>
 </body>
 </html>
