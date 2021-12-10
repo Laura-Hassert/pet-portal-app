@@ -20,8 +20,7 @@ public class PetController {
         return petRepository.findAll();
     }
 
-    @GetMapping
-    @RequestMapping("{pet_id}")
+    @GetMapping("{pet_id}")
     public Pet get(@PathVariable Integer pet_id) {
         return petRepository.getById(pet_id);
     }
@@ -37,7 +36,6 @@ public class PetController {
         petRepository.deleteById(pet_id);
     }
 
-    //Patch Update????
     @RequestMapping(value = "{pet_id}", method = RequestMethod.PUT)
     public Pet update(@PathVariable Integer pet_id, @RequestBody Pet pet) {
         Pet existingPet = petRepository.getById(pet_id);

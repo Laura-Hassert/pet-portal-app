@@ -3,10 +3,7 @@ package com.devmountain.PetPortal.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "event")
@@ -18,9 +15,21 @@ public class Event {
     private Date event_date;
     private String event_type;
     private String description;
-    private Integer pet_id;
+//    private Integer pet_id;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 
     public Event() {
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
     public Integer getEntry_id() {
@@ -56,7 +65,7 @@ public class Event {
         this.description = description;
     }
 
-    public Integer getPet_id() { return pet_id; }
-
-    public void setPet_id(Integer pet_id) { this.pet_id = pet_id; }
+//    public Integer getPet_id() { return pet_id; }
+//
+//    public void setPet_id(Integer pet_id) { this.pet_id = pet_id; }
 }

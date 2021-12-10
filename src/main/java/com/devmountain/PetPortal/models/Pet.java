@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class Pet {
     private String sex;
     private Boolean spayed_neutered;
     private Integer weight;
-    private Integer current_vet;
     private String microchip_number;
     private String license_number;
     private String about;
@@ -32,8 +32,33 @@ public class Pet {
     @JsonIgnore
     private List<User> users;
 
+    @ManyToOne
+    @JoinColumn(name = "current_vet")
+    private Vet vet;
+
+    @OneToMany(mappedBy = "pet")
+    private List<Event> events;
+
     public Pet() {
 
+    }
+
+    public List<Event> getEvents() {
+        if(events == null)
+            events = new ArrayList<>();
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    public Vet getVet() {
+        return vet;
+    }
+
+    public void setVet(Vet vet) {
+        this.vet = vet;
     }
 
     public List<User> getUsers() {
@@ -124,14 +149,6 @@ public class Pet {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
-    }
-
-    public Integer getCurrent_vet() {
-        return current_vet;
-    }
-
-    public void setCurrent_vet(Integer current_vet) {
-        this.current_vet = current_vet;
     }
 
     public String getMicrochip_number() {

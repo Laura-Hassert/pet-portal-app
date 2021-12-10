@@ -22,14 +22,9 @@ public class UserViewController {
 
     @GetMapping("/userProfile")
     public String getUserProfile(Model model) {
-        Optional<User> userOptional = userRepository.findById(1);
-        userOptional.ifPresent(user -> model.addAttribute("user", user));
 
-//        List<Pet> petList = petRepository.findByUserId(1);
-//        model.addAttribute("pets", petList);
-
-        Optional<Pet> petOptional = petRepository.findById(1);
-        petOptional.ifPresent(pet -> model.addAttribute("pet", pet));
+        List<Pet> petList = petRepository.findPetByUserId(1);
+        model.addAttribute("pets", petList);
 
         return "userProfile";
     }

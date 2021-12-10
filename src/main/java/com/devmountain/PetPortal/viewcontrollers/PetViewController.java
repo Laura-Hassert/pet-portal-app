@@ -2,7 +2,6 @@ package com.devmountain.PetPortal.viewcontrollers;
 
 import com.devmountain.PetPortal.models.Event;
 import com.devmountain.PetPortal.models.Pet;
-import com.devmountain.PetPortal.models.User;
 import com.devmountain.PetPortal.models.Vet;
 import com.devmountain.PetPortal.repositories.EventRepository;
 import com.devmountain.PetPortal.repositories.PetRepository;
@@ -26,14 +25,14 @@ public class PetViewController {
     private EventRepository eventRepository;
 
     @GetMapping("/petProfile")
-    public String getPetProfile(Model model) {
+    public String getPetProfile(Model model, Integer pet_id) {
         Optional<Pet> petOptional = petRepository.findById(1);
         petOptional.ifPresent(pet -> model.addAttribute("pet", pet));
 
-        Optional<Vet> vetOptional = vetRepository.findById(1);
+        Optional<Vet> vetOptional = vetRepository.findVetByPetId(1);
         vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
 
-        List<Event> eventList = eventRepository.findByPetId(1);
+        List<Event> eventList = eventRepository.findEventByPetId(1);
         model.addAttribute("events", eventList);
 
         return "petProfile";
@@ -72,7 +71,7 @@ public class PetViewController {
         return "addNewEntry";
     }
 
-    @DeleteMapping("/petProfile")
+    @DeleteMapping("/deleteEntry")
     public String deleteEntry(@ModelAttribute Event event, Model model) {
         eventRepository.delete(event);
         model.addAttribute("event", eventRepository.findAll());

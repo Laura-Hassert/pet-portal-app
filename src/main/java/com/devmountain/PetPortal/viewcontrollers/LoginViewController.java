@@ -1,6 +1,5 @@
 package com.devmountain.PetPortal.viewcontrollers;
 
-import com.devmountain.PetPortal.models.Pet;
 import com.devmountain.PetPortal.models.User;
 import com.devmountain.PetPortal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

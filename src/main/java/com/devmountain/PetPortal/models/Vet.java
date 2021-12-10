@@ -2,10 +2,9 @@ package com.devmountain.PetPortal.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "vet")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -25,8 +24,22 @@ public class Vet {
     private String website;
     private String vet_email;
 
+    @OneToMany(mappedBy = "vet")
+    private List<Pet> petList;
+
+
     public Vet() {
 
+    }
+
+    public List<Pet> getPetList() {
+        if(petList == null)
+            petList = new ArrayList<>();
+        return petList;
+    }
+
+    public void setPetList(List<Pet> petList) {
+        this.petList = petList;
     }
 
     public Integer getVet_id() {

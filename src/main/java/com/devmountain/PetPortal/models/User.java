@@ -20,8 +20,8 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "user_pet",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "pet_id"))
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "pet_id") })
     private List<Pet> pets;
 
     public User() {
