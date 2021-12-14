@@ -15,6 +15,8 @@
 </style>
 <body>
     <h2>My Pets</h2>
+    <div th:if="${user==null}">USER NOT FOUND</div>
+    <div th:if="${user!=null}">
 
     <div id="pet-container">
         <div th:if="${pets==null or pets.empty}">
@@ -25,13 +27,14 @@
                 <span th:text="${pet.pet_name}"></span> the <span th:text="${pet.pet_type}"></span><br>
                 <a th:href="@{/petProfile/{id}(id=${pet.pet_id})}"><button type="button">View Pet</button></a>
                 <button>Edit Pet</button>
-                <form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form>
+                <form action="#" th:object="${pet}" th:action="@{/deletePet/{petId}(petId=${pet.pet_id}, userId=${user.user_id})}" th:method="delete"><button type="submit">Delete Pet</button></form>
             </div>
         </div>
     </div>
 
-    <a th:href="@{/addNewPet}"><button type="button">Add new pet</button></a><br><br>
+    <a th:href="@{/addNewPet/{userId}(userId=${user.user_id})}"><button type="button">Add new pet</button></a><br><br>
 
     <a th:href="@{/login}"><button type="button">Log Out</button></a>
+    </div>
 </body>
 </html>

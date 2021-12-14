@@ -19,7 +19,7 @@
 <body>
 
   <h2>Add New Pet</h2> <br>
-  <form action="#" th:action="@{/addNewPet}" th:object="${pet}" method="post">
+  <form action="#" th:action="@{/addNewPet/{userId}(userId=${userId})}" th:object="${pet}" method="post">
     pet name <input type="text" id="pname" name="pname" th:field="*{pet_name}" placeholder="pet name" required><br><br>
     type of pet <select id="type" name="type" th:field="*{pet_type}" required>
     <option value="" disabled selected hidden>select</option>

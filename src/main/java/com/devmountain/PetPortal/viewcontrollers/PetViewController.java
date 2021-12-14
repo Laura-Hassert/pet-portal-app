@@ -87,11 +87,14 @@ public class PetViewController {
         return "addNewEntry";
     }
 
-    @DeleteMapping("/deleteEntry/{entry_id}")
-    public String deleteEntry(@ModelAttribute Event event, Model model) {
-        eventRepository.delete(event);
-        model.addAttribute("event", eventRepository.findAll());
-        return "petProfile";
-    }
+//    @DeleteMapping("/deleteEntry/{entryId}")
+//    public String deleteEntry(Model model, @PathVariable Integer eventId) {
+//        Optional<Event> eventOptional = eventRepository.findById(eventId);
+//        eventOptional.ifPresent(event ->
+//                eventRepository.delete(event));
+//
+//        model.addAttribute("event", eventRepository.findEventsByPetId());
+//        return "petProfile";
+//    }
 
 }
