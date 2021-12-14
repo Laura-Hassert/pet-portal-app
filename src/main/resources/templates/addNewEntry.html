@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <title>New Entry</title>
 </head>
+<style>
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+</style>
 <body>
 <h2>New Entry</h2>
-<!--    <h2>New Entry for <span th:text=${pet.pet_name}></span></h2>-->
 
-    <form action="#" th:action="@{/addNewEntry}" th:object="${event}" method="post">
-<!--        pet id <input type="text" id="petid" name="petid" th:field="*{pet_id}">-->
-<!--        <small><span th:text=${pet.pet_name}>'s pet id is</span><span th:text=${pet.pet_id}></span></small><br><br>-->
+    <form action="#" th:action="@{/addNewEntry(petId=${petId})}" th:object="${event}" method="post">
         date <input type="date" id="dateofentry" name="dateofentry" th:field="*{event_date}"><br><br>
         entry type <select id="entrytype" name="entrytype" th:field="*{event_type}" required>
             <option value="" disabled selected hidden>select</option>

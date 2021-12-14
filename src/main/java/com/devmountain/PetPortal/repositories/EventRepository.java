@@ -11,6 +11,6 @@ import java.util.List;
 public interface EventRepository extends JpaRepository<Event, Integer> {
 
     @Query(value = "SELECT * FROM event e WHERE e.pet_id = :pet_id ORDER BY e.event_date DESC", nativeQuery = true)
-    List<Event> findEventByPetId(Integer pet_id);
+    List<Event> findEventsByPetId(Integer pet_id);
 
 }

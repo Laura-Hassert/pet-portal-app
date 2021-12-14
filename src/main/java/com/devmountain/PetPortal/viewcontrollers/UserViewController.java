@@ -20,10 +20,10 @@ public class UserViewController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/userProfile")
-    public String getUserProfile(Model model) {
+    @GetMapping("/userProfile/{user_id}")
+    public String getUserProfile(Model model, @PathVariable Integer user_id) {
 
-        List<Pet> petList = petRepository.findPetByUserId(1);
+        List<Pet> petList = petRepository.findPetByUserId(user_id);
         model.addAttribute("pets", petList);
 
         return "userProfile";
@@ -37,14 +37,26 @@ public class UserViewController {
     }
 
     @PostMapping("/addNewPet")
-    public String submitNewPet(@ModelAttribute Pet pet, Model model) {
-        model.addAttribute("pet", pet);
+    public String submitNewPet(@ModelAttribute Pet pet, Model model, @RequestParam Integer userId) {
+        Optional<User> userPetOptional = userRepository.findById(userId);
+        userPetOptional.ifPresent(user -> {
+//            pet.setUsers(user);
+            model.addAttribute("user", user);
+        });
+
+        if(userPetOptional.isEmpty()) {
+            model.addAttribute("user", new User());
+        }
+
         petRepository.saveAndFlush(pet);
+        model.addAttribute("pets", petRepository.findPetByUserId(userId));
         return "userProfile";
     }
 
     @GetMapping("/addNewPet")
-    public String getAddNewPet(Model model) {
+    public String getAddNewPet(Model model, @RequestParam Integer userId) {
+        model.addAttribute("userId", userId);
+
         model.addAttribute("pet", new Pet());
         return "addNewPet";
     }

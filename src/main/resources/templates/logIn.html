@@ -5,20 +5,24 @@
   <meta charset="UTF-8">
   <title>Pet Portal | Log In</title>
 </head>
+<style>
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; padding: 70px 0; text-align: center; }
+    button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+</style>
 <body>
   <h1>Welcome to Pet Portal!</h1>
   <h3>Sign in below to get started</h3>
 
-  <p>Log In</p>
-  <form name=loginForm action="login" method="post">
-    <input type="text" id="email" name="email" placeholder="email" required><br><br>
-    <input type="password" id="password" name="password" placeholder="password" required><br><br>
-    <button type="submit">Log In</button>
-  </form>
+    <form name=loginForm action="login" method="post">
+      <input type="text" id="email" name="email" placeholder="email" required><br><br>
+      <input type="password" id="password" name="password" placeholder="password" required><br><br>
+      <a th:href="@{/userProfile/1}"><button type="submit">Log In</button></a>
+    </form><br>
 
   Don't have an account yet? Register <a th:href="@{/register}">here</a>!
 
-
-  <!--  <a th:href="@{/userProfile}">-->
 </body>
 </html>

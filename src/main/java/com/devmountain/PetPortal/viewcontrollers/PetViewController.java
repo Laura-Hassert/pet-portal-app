@@ -5,6 +5,7 @@ import com.devmountain.PetPortal.models.Pet;
 import com.devmountain.PetPortal.models.Vet;
 import com.devmountain.PetPortal.repositories.EventRepository;
 import com.devmountain.PetPortal.repositories.PetRepository;
+import com.devmountain.PetPortal.repositories.UserRepository;
 import com.devmountain.PetPortal.repositories.VetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,16 +24,18 @@ public class PetViewController {
     private VetRepository vetRepository;
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    @GetMapping("/petProfile")
-    public String getPetProfile(Model model, Integer pet_id) {
-        Optional<Pet> petOptional = petRepository.findById(1);
+    @GetMapping("/petProfile/{pet_id}")
+    public String getPetProfile(Model model, @PathVariable Integer pet_id) {
+        Optional<Pet> petOptional = petRepository.findById(pet_id);
         petOptional.ifPresent(pet -> model.addAttribute("pet", pet));
 
-        Optional<Vet> vetOptional = vetRepository.findVetByPetId(1);
+        Optional<Vet> vetOptional = vetRepository.findVetByPetId(pet_id);
         vetOptional.ifPresent(vet -> model.addAttribute("vet", vet));
 
-        List<Event> eventList = eventRepository.findEventByPetId(1);
+        List<Event> eventList = eventRepository.findEventsByPetId(pet_id);
         model.addAttribute("events", eventList);
 
         return "petProfile";
@@ -59,19 +62,32 @@ public class PetViewController {
     }
 
     @PostMapping("/addNewEntry")
-    public String submitNewEntry(@ModelAttribute Event event, Model model) {
-        model.addAttribute("event", event);
+    public String submitNewEntry(@ModelAttribute Event event, Model model, @RequestParam Integer petId) {
+        Optional<Pet> eventPetOptional = petRepository.findById(petId);
+        eventPetOptional.ifPresent(pet -> {
+            event.setPet(pet);
+            model.addAttribute("pet", pet);
+            model.addAttribute("vet", pet.getVet());
+        });
+
+        if(eventPetOptional.isEmpty()) {
+            model.addAttribute("pet", new Pet());
+        }
+
         eventRepository.saveAndFlush(event);
+        model.addAttribute("events", eventRepository.findEventsByPetId(petId));
         return "petProfile";
     }
 
     @GetMapping("/addNewEntry")
-    public String getAddNewEntry(Model model) {
+    public String getAddNewEntry(Model model, @RequestParam Integer petId) {
+        model.addAttribute("petId", petId);
+
         model.addAttribute("event", new Event());
         return "addNewEntry";
     }
 
-    @DeleteMapping("/deleteEntry")
+    @DeleteMapping("/deleteEntry/{entry_id}")
     public String deleteEntry(@ModelAttribute Event event, Model model) {
         eventRepository.delete(event);
         model.addAttribute("event", eventRepository.findAll());

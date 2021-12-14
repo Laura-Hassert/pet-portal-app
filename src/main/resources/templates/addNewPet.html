@@ -5,6 +5,17 @@
   <meta charset="UTF-8">
   <title>Pet Portal</title>
 </head>
+<style>
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+    #submit-button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    #submit-button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    #reset-button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    #reset-button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+</style>
 <body>
 
   <h2>Add New Pet</h2> <br>
@@ -40,7 +51,7 @@
     license number (if applicable) <input type="text" id="license" name="license" th:field="*{license_number}" placeholder="license number"><br><br>
     tell us about your pet <br><input type="text" id="about" name="about" th:field="*{about}" placeholder="tell us about your pet here"><br><br>
 
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    <p><input id="submit-button" type="submit" value="Submit"/> <input id="reset-button" type="reset" value="Reset"/></p>
     <a th:href="@{/userProfile}"><button type="button">Back</button></a>
   </form>
 </body>

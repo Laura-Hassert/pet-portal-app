@@ -5,30 +5,32 @@
     <meta charset="UTF-8">
     <title>Pet Portal</title>
 </head>
+<style>
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+    #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; }
+</style>
 <body>
-<!--    <h1>Welcome <span th:text="${user.first_name}">no user found</span>!</h1>-->
-    <h2>Pets</h2>
+    <h2>My Pets</h2>
 
+    <div id="pet-container">
+        <div th:if="${pets==null or pets.empty}">
+            <p>No Pet Info Available</p>
+        </div>
+        <div th:if="${pets!=null}">
+            <div th:each="pet : ${pets}">
+                <span th:text="${pet.pet_name}"></span> the <span th:text="${pet.pet_type}"></span><br>
+                <a th:href="@{/petProfile/{id}(id=${pet.pet_id})}"><button type="button">View Pet</button></a>
+                <button>Edit Pet</button>
+                <form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <tbody th:if="${pets==null or pets.empty}">
-            <tr>
-                <td colspan="2"> No Pet Info Available </td>
-            </tr>
-        </tbody>
-        <tbody th:if="${pets!=null}">
-            <tr th:each="pet : ${pets}">
-                <td>Name: <span th:text="${pet.pet_name}"></span></td>
-                <td>Type: <span th:text="${pet.pet_type}"></span></td>
-                <td><button href="@{/petProfile}">View Pet</button></td>
-                <td><button>Edit Pet</button></td>
-                <td><form th:object="${pet}" th:action="@{/deletePet}" th:method="delete"><button type="submit">Delete Pet</button></form></td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <a th:href="@{/addNewPet}"><button type="button">Add new pet</button></a>
+    <a th:href="@{/addNewPet}"><button type="button">Add new pet</button></a><br><br>
 
     <a th:href="@{/login}"><button type="button">Log Out</button></a>
 </body>

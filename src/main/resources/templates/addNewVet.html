@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <title>Pet Portal</title>
 </head>
+<style>
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
+    button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
+    column { float: left; width: 50% }
+    row:after { content: ""; display: table; clear: both; }
+</style>
 <body>
 <h2>Add New Vet</h2> <br>
     <form action="#" th:action="@{/addNewVet}" th:object="${vet}" method="post">

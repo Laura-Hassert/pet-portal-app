@@ -14,4 +14,7 @@ public interface PetRepository extends JpaRepository<Pet, Integer>{
 
     @Query(value = "SELECT * FROM pet_profile p JOIN user_pet up ON p.pet_id=up.pet_id WHERE user_id = :user_id", nativeQuery = true)
     List<Pet> findPetByUserId(Integer user_id);
+
+    @Query(value = "SELECT pet_name FROM pet_profile", nativeQuery = true)
+    Pet findPetByName(String pet_name);
 }

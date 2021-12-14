@@ -1,11 +1,14 @@
 package com.devmountain.PetPortal.viewcontrollers;
 
 import com.devmountain.PetPortal.models.User;
+import com.devmountain.PetPortal.models.Vet;
 import com.devmountain.PetPortal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class LoginViewController {
@@ -14,7 +17,12 @@ public class LoginViewController {
     private UserRepository userRepository;
 
     @GetMapping("/login")
-    public String getLogin() { return "login"; }
+    public String getLogin() {
+//        Optional<User> userOptional = userRepository.findById(user_id);
+//        userOptional.ifPresent(user -> model.addAttribute("user", user));
+
+        return "login";
+    }
 
     @PostMapping("/loginVerif")
     @ResponseBody
