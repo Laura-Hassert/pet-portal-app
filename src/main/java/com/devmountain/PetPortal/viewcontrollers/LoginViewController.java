@@ -17,14 +17,14 @@ public class LoginViewController {
     private UserRepository userRepository;
 
     @GetMapping("/login")
-    public String getLogin() {
-//        Optional<User> userOptional = userRepository.findById(user_id);
-//        userOptional.ifPresent(user -> model.addAttribute("user", user));
+    public String getLogin(Model model, @RequestParam Integer user_id) {
+        Optional<User> userOptional = userRepository.findById(user_id);
+        userOptional.ifPresent(user -> model.addAttribute("user", user));
 
         return "login";
     }
 
-    @PostMapping("/loginVerif")
+    @PostMapping("/login")
     @ResponseBody
     public String loginVerif(@RequestParam(name = "email") String userEmail, @RequestParam(name = "password") String userPass) {
         User user = userRepository.findByEmail(userEmail);

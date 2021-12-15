@@ -61,7 +61,7 @@
                     <span th:text="${#dates.format(event.event_date, 'MM-dd-YYYY')}"></span><br>
                     <span th:text="${event.event_type}"></span><br>
                     <span th:text="${event.description}"></span><br>
-                    <form th:object="${event}" th:action="@{/deleteEntry}" th:method="delete"><button type="submit">Delete Entry</button></form><br>
+                    <form action="#" th:object="${event}" th:action="@{/deleteEntry/{entryId}(entryId=${event.entry_id})}" th:method="delete"><button type="submit">Delete Entry</button></form><br>
                 </div>
             </div>
         </div>

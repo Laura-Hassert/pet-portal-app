@@ -8,6 +8,7 @@ import com.devmountain.PetPortal.repositories.PetRepository;
 import com.devmountain.PetPortal.repositories.UserRepository;
 import com.devmountain.PetPortal.repositories.VetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -82,19 +83,24 @@ public class PetViewController {
     @GetMapping("/addNewEntry")
     public String getAddNewEntry(Model model, @RequestParam Integer petId) {
         model.addAttribute("petId", petId);
-
         model.addAttribute("event", new Event());
         return "addNewEntry";
     }
 
-//    @DeleteMapping("/deleteEntry/{entryId}")
-//    public String deleteEntry(Model model, @PathVariable Integer eventId) {
-//        Optional<Event> eventOptional = eventRepository.findById(eventId);
-//        eventOptional.ifPresent(event ->
-//                eventRepository.delete(event));
-//
-//        model.addAttribute("event", eventRepository.findEventsByPetId());
-//        return "petProfile";
-//    }
+    @DeleteMapping("/deleteEntry/{entryId}")
+    public String deleteEntry(Model model, @PathVariable Integer entryId) {
+        Optional<Event> eventOptional = eventRepository.findById(entryId);
+        eventOptional.ifPresent(event -> {
+            eventRepository.deleteById(entryId);
+
+            model.addAttribute("pet", event.getPet());
+            Integer petId = event.getPet().getPet_id();
+            Optional<Vet> vetOptional = vetRepository.findVetByPetId(petId);
+            vetOptional.ifPresent(vet -> { model.addAttribute("vet", vet); });
+            model.addAttribute("events", eventRepository.findEventsByPetId(petId));
+            });
+
+        return "petProfile";
+    }
 
 }
