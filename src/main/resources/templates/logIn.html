@@ -16,10 +16,10 @@
   <h1>Welcome to Pet Portal!</h1>
   <h3>Sign in below to get started</h3>
 
-    <form name=loginForm action="login" method="post">
+    <form name=loginForm action="#" th:action="@{/loginVerif}" th:object="${user}" method="post">
       <input type="text" id="email" name="email" placeholder="email" required><br><br>
       <input type="password" id="password" name="password" placeholder="password" required><br><br>
-      <a th:href="@{/userProfile/1}"><button type="submit">Log In</button></a>
+      <a th:href="@{/userProfile/{user_id}(user_id=${user.user_id})}"><button type="submit">Log In</button></a>
     </form><br>
 
   Don't have an account yet? Register <a th:href="@{/register}">here</a>!

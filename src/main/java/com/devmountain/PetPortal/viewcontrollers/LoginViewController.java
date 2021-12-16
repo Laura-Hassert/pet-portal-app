@@ -17,20 +17,20 @@ public class LoginViewController {
     private UserRepository userRepository;
 
     @GetMapping("/login")
-    public String getLogin(Model model, @RequestParam Integer user_id) {
-        Optional<User> userOptional = userRepository.findById(user_id);
+    public String getLogin(Model model) {
+        Optional<User> userOptional = userRepository.findById(1);
         userOptional.ifPresent(user -> model.addAttribute("user", user));
 
         return "login";
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public String loginVerif(@RequestParam(name = "email") String userEmail, @RequestParam(name = "password") String userPass) {
+    @PostMapping("/loginVerif")
+    public String loginVerif(Model model, @RequestParam(name = "email") String userEmail, @RequestParam(name = "password") String userPass) {
         User user = userRepository.findByEmail(userEmail);
-        System.out.println(userPass);
-        System.out.println(user.getPassword());
+        Integer userId = user.getUser_id();
         if(user.getPassword().equals(userPass)) {
+            model.addAttribute("user", user);
+            model.addAttribute("pets", user.getPets());
             return "userProfile";
         } else {
             return "login";
@@ -39,9 +39,9 @@ public class LoginViewController {
 
     @PostMapping("/register")
     public String submitNewUser(@ModelAttribute User user, Model model) {
-    model.addAttribute("user", user);
-    userRepository.saveAndFlush(user);
-    return "login";
+        model.addAttribute("user", user);
+        userRepository.saveAndFlush(user);
+        return "login";
     }
 
     @GetMapping("/register")

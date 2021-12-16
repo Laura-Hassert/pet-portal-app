@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Pet Portal</title>
@@ -14,7 +14,7 @@
     #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; }
 </style>
 <body>
-    <h2>My Pets</h2>
+    <h2><span th:text="${user.first_name}"></span>'s Pets</h2>
     <div th:if="${user==null}">USER NOT FOUND</div>
     <div th:if="${user!=null}">
 
