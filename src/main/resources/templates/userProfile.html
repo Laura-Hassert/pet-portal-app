@@ -6,13 +6,17 @@
     <title>Pet Portal</title>
 </head>
 <style>
-    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    .header { background: #667b68; color: white; border: none; text-align: left; top: 0; left: 0; width: 100%; height: 4rem; margin-left: 0; position: fixed; }
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; margin-top: 5rem; }
     button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
     button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
     column { float: left; width: 50% }
     row:after { content: ""; display: table; clear: both; }
-    #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; }
+    #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 5px 50px 75px 10px; }
 </style>
+<header class="header">
+    <h2>Pet Portal</h2>
+</header>
 <body>
     <h2><span th:text="${user.first_name}"></span>'s Pets</h2>
     <div th:if="${user==null}">USER NOT FOUND</div>
@@ -24,17 +28,16 @@
         </div>
         <div th:if="${pets!=null}">
             <div th:each="pet : ${pets}">
-                <span th:text="${pet.pet_name}"></span> the <span th:text="${pet.pet_type}"></span><br>
-                <a th:href="@{/petProfile/{id}(id=${pet.pet_id})}"><button type="button">View Pet</button></a>
-                <button>Edit Pet</button>
-                <form action="#" th:object="${pet}" th:action="@{/deletePet/{petId}(petId=${pet.pet_id}, userId=${user.user_id})}" th:method="delete"><button type="submit">Delete Pet</button></form>
+                <h3><span th:text="${pet.pet_name}"></span> the <span th:text="${pet.pet_type}"></span></h3><br>
+                <a th:href="@{/petProfile/{id}(id=${pet.pet_id})}"><button type="button">View Pet</button></a><br><br>
+                <button>Edit Pet</button><br><br>
+                <form action="#" th:object="${pet}" th:action="@{/deletePet/{petId}(petId=${pet.pet_id}, userId=${user.user_id})}" th:method="delete"><button type="submit">Delete Pet</button></form><br><br>
             </div>
         </div>
     </div>
+        <a th:href="@{/addNewPet/{userId}(userId=${user.user_id})}"><button type="button">Add new pet</button></a><br><br><br><br>
 
-    <a th:href="@{/addNewPet/{userId}(userId=${user.user_id})}"><button type="button">Add new pet</button></a><br><br>
-
-    <a th:href="@{/login}"><button type="button">Log Out</button></a>
+        <a th:href="@{/login}" class="logout" ><button type="button">Log Out</button></a>
     </div>
 </body>
 </html>

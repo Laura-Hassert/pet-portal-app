@@ -6,65 +6,75 @@
     <title>Pet Portal</title>
 </head>
 <style>
-    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    .header { background: #667b68; color: white; border: none; text-align: left; top: 0; left: 0; width: 100%; height: 4rem; margin-left: 0; position: fixed; }
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; margin-top: 5rem; }
     button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
     button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
-    column { float: left; width: 50% }
-    row:after { content: ""; display: table; clear: both; }
-    #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; }
-    #vet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; }
+    .column { float: left; width: 50% }
+    .row:after { content: ""; display: table; clear: both; }
+    #pet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px; width: 100% }
+    #vet-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; margin: 20px; padding: 10 px; }
     #entry-container { background-color: #a3b899; color: black; border: none; text-align: left; display: flex; flex-wrap: wrap; justify-content: left; align-items: left; margin: 20px; padding: 10 px;  }
 </style>
+<header class="header">
+    <h2>Pet Portal</h2>
+</header>
 <body>
     <h2><span th:text="${pet.pet_name}"></span>'s Profile</h2>
 <!--    <a th:href="@{/userProfile/{id}(id=${user.user_id}"><button type="button">Back</button></a><br>-->
     <div id="pet-container">
         <div th:if="${pet==null}"><p>No Pet Info Available</p></div>
         <div th:if="${pet!=null}">
-            Name: <span th:text="${pet.pet_name}"></span><br>
-            Type: <span th:text="${pet.pet_type}"></span><br>
-            Breed: <span th:text="${pet.breed}"></span><br>
-            Color: <span th:text="${pet.color}"></span><br>
-            Date of Birth: <span th:text="${#dates.format(pet.DOB, 'MM-dd-YYYY')}"></span><br>
-            Date of Adoption: <span th:text="${#dates.format(pet.DOA, 'MM-dd-YYYY')}"></span><br>
-            Sex: <span th:text="${pet.sex}"></span><br>
-            Spayed/Neutered: <span th:text="${pet.spayed_neutered}"></span><br>
-            Weight: <span th:text="${pet.weight}"></span><br>
-            Microchip# <span th:text="${pet.microchip_number}"></span><br>
-            License# <span th:text="${pet.license_number}"></span><br>
-            About: <span th:text="${pet.about}"></span><br>
-            <button>Edit Pet</button>
-        </div>
-    </div>
+            <div class="row">
+                <div class="column">
+                    <p>Type: <span th:text="${pet.pet_type}"></span></p>
+                    <p>Breed: <span th:text="${pet.breed}"></span></p>
+                    <p>Color: <span th:text="${pet.color}"></span></p>
+                    <p>Date of Birth: <span th:text="${#dates.format(pet.DOB, 'MM-dd-YYYY')}"></span></p>
+                    <p>Date of Adoption: <span th:text="${#dates.format(pet.DOA, 'MM-dd-YYYY')}"></span></p>
+                    <p>About: <span th:text="${pet.about}"></span></p>
+                </div>
+                <div class="column">
+                    <p>Sex: <span th:text="${pet.sex}"></span></p>
+                    <p>Spayed/Neutered: <span th:text="${pet.spayed_neutered}"></span></p>
+                    <p>Weight: <span th:text="${pet.weight}"></span></p>
+                    <p>Microchip# <span th:text="${pet.microchip_number}"></span></p>
+                    <p>License# <span th:text="${pet.license_number}"></span></p>
+                </div>
+            </div>
 
-    <h3>Vets</h3>
+            <button>Edit Pet</button><br>
+        </div>
+    </div><br>
+
+    <h3>Vet</h3>
         <div id="vet-container">
             <div th:if="${vet==null}"><p>No Vet Info Available</p></div>
             <div th:if="${vet!=null}">
-                <span th:text="${vet.vet_name}"></span><br>
-                <span th:text="${vet.practice_name}"></span><br>
-                <span th:text="${vet.street_address}"></span> <span th:text="${vet.city}"></span>, <span th:text="${vet.state}"></span> <span th:text="${vet.zip_code}"></span><br>
-                Phone: <span th:text="${vet.vet_phone}"></span><br>
-                Fax: <span th:text="${vet.vet_fax}"></span><br>
-                <span th:text="${vet.website}"></span><br>
-                <span th:text="${vet.vet_email}"></span><br>
-                <form th:object="${vet}" th:action="@{/deleteVet}" th:method="delete"><button type="submit">Delete Vet</button></form>
+                <p><span th:text="${vet.vet_name}"></span></p>
+                <p><span th:text="${vet.practice_name}"></span></p>
+                <p><span th:text="${vet.street_address}"></span> <span th:text="${vet.city}"></span>, <span th:text="${vet.state}"></span> <span th:text="${vet.zip_code}"></span></p>
+                <p>Phone: <span th:text="${vet.vet_phone}"></span></p>
+                <p>Fax: <span th:text="${vet.vet_fax}"></span></p>
+                <p><span th:text="${vet.website}"></span></p>
+                <p><span th:text="${vet.vet_email}"></span></p>
+                <form th:object="${vet}" th:action="@{/deleteVet}" th:method="delete"><button type="submit">Delete Vet</button></form><br>
             </div>
         </div>
-        <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a>
+        <a th:href="@{/addNewVet}"><button type="button">Add New Vet</button></a><br><br>
 
     <h3>Entries</h3>
         <div id="entry-container">
             <div th:if="${events==null}"><p>No Events Available</p></div>
             <div th:if="${events!=null}">
                 <div th:each="event : ${events}">
-                    <span th:text="${#dates.format(event.event_date, 'MM-dd-YYYY')}"></span><br>
-                    <span th:text="${event.event_type}"></span><br>
-                    <span th:text="${event.description}"></span><br>
+                    <p><span th:text="${#dates.format(event.event_date, 'MM-dd-YYYY')}"></span></p>
+                    <p><span th:text="${event.event_type}"></span></p>
+                    <p><span th:text="${event.description}"></span></p>
                     <form action="#" th:object="${event}" th:action="@{/deleteEntry/{entryId}(entryId=${event.entry_id})}" th:method="delete"><button type="submit">Delete Entry</button></form><br>
                 </div>
             </div>
         </div>
-        <a th:href="@{/addNewEntry(petId=${pet.pet_id})}"><button type="button">Add New Entry</button></a>
+        <a th:href="@{/addNewEntry(petId=${pet.pet_id})}"><button type="button">Add New Entry</button></a><br>
 </body>
 </html>

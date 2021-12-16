@@ -6,12 +6,16 @@
     <title>Pet Portal</title>
 </head>
 <style>
-    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; }
+    .header { background: #667b68; color: white; border: none; text-align: left; top: 0; left: 0; width: 100%; height: 4rem; margin-left: 0; position: fixed; }
+    body { background-color: #dde6d5; font-family: Arial, Verdana, sans-serif; margin-top: 5rem; }
     button { background-color: #667b68; color: white; border: none; text-align: center; display: inline-block; padding: 10px 24px; border-radius: 2px; border: 2px solid #667b68; }
     button:hover { background-color: white; color: #667b68; border: 2px solid #667b68; }
     column { float: left; width: 50% }
     row:after { content: ""; display: table; clear: both; }
 </style>
+<header class="header">
+    <h2>Pet Portal</h2>
+</header>
 <body>
 <h2>Add New Vet</h2> <br>
     <form action="#" th:action="@{/addNewVet}" th:object="${vet}" method="post">
@@ -88,7 +92,7 @@
         email <input type="email" id="email" name="email" th:field="*{vet_email}" placeholder="vet's email address"><br><br>
 
         <button type="submit">Submit</button>
-    </form>
+    </form><br><br>
     <a th:href="@{/petProfile}"><button type="button">Back to Profile</button></a>
 </body>
 </html>
